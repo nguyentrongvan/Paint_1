@@ -1,0 +1,58 @@
+ Queue<Point> Q = new Queue<Point>();
+             GetColor(x, y, out current);
+
+             Point nn;
+             nn = new Point();
+
+             if (IsSameColor(current,oldColor)) 
+             {
+                Point now = new Point(x, y);
+
+                 SetColor(now.X, now.Y, cfill);
+                 Q.Enqueue(now);
+
+                 while(Q.Count()!=0)
+                 {
+                     Q.Dequeue();
+                    GetColor(now.X+1, now.Y, out current);
+                     if (IsSameColor(current, oldColor))
+                     {
+                        SetColor(now.X+1, now.Y, cfill);
+                         nn.X = now.X + 1;
+                         nn.Y = now.Y;
+                         Q.Enqueue(nn);
+                     }
+
+                     GetColor(now.X - 1, now.Y, out current);
+                     if (IsSameColor(current, oldColor))
+                     {
+                         SetColor(now.X - 1, now.Y, cfill);
+                         nn.X = now.X - 1;
+                         nn.Y = now.Y;
+                         Q.Enqueue(nn);
+                     }
+
+                     GetColor(now.X, now.Y + 1, out current);
+                     if (IsSameColor(current, oldColor))
+                     {
+                         SetColor(now.X, now.Y + 1, cfill);
+                         nn.X = now.X;
+                         nn.Y = now.Y + 1;
+                         Q.Enqueue(nn);
+                     }
+
+                     GetColor(now.X, now.Y - 1, out current);
+                     if (IsSameColor(current, oldColor))
+                     {
+                         SetColor(now.X, now.Y - 1, cfill);
+                         nn.X = now.X;
+                         nn.Y = now.Y - 1;
+                         Q.Enqueue(nn);
+                     }
+
+
+                    if (Q.Count() != 0)
+                     { now = Q.First(); }
+
+                 }
+             }
